@@ -1,28 +1,25 @@
 {
-  "name": "backend",
+  "name": "skillfolio-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend for Skillfolio MVP",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
+    "axios": "^1.7.4",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.1",
-    "multer": "^2.0.2",
-    "pdfkit": "^0.17.2",
-    "qrcode": "^1.5.4"
+    "mongoose": "^7.7.0",
+    "pdfkit": "^0.15.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.0"
   }
 }
