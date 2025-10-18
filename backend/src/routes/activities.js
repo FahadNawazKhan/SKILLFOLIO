@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
+
 const {
   createActivity,
-  getPendingActivities
+  getPendingActivities,
+  verifyActivity
 } = require('../controllers/activitiesController');
 
 router.post('/', createActivity);
-router.get('/', getPendingActivities); // optional query params ?status=pending
+router.get('/', getPendingActivities);
+
+// IMPORTANT: approve/reject route used by frontend ModeratorDashboard
+router.post('/:id/verify', verifyActivity);
 
 module.exports = router;
