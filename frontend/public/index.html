@@ -2,42 +2,116 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Basic -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0b6d5f" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- App info (Skillfolio specific) -->
+    <title>Skillfolio — Verifiable Student Activity Credentials</title>
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Skillfolio converts student activity submissions into signed, verifiable credentials (PDF + QR) so colleges can maintain auditable records and students can share trusted proof."
     />
+
+    <!-- Open Graph (social/share) -->
+    <meta
+      property="og:title"
+      content="Skillfolio — Verifiable Student Activity Credentials"
+    />
+    <meta
+      property="og:description"
+      content="Submit activities, get signed PDF credentials with QR verification — simple, auditable, demo-ready."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%/" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Skillfolio — Verifiable Student Activity Credentials"
+    />
+    <meta
+      name="twitter:description"
+      content="Submit activities, get signed PDF credentials with QR verification — simple, auditable."
+    />
+    <meta name="twitter:image" content="%PUBLIC_URL%/og-image.png" />
+
+    <!-- PWA / app icons -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Performance: preconnect to Google Fonts (if you use them) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Example font (optional) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Optional site-wide stylesheet in public (if you place one) -->
+    <!-- <link rel="stylesheet" href="%PUBLIC_URL%/styles.css" /> -->
+
+    <!-- Runtime config: exposes environment values at build-time or runtime.
+         NOTE: CRA doesn't replace %REACT_APP_*% in index.html during runtime.
+         If you want runtime-config (deploy-time), you can use a small script (left here as optional).
+         To use runtime injection when serving built files, create a server-side replace or use a static JSON served from backend. -->
+    <script>
+      (function () {
+        // This builds a `window.__SKILLFOLIO_CONFIG__` object.
+        // If you prefer not to expose any runtime config in HTML, remove this block.
+        window.__SKILLFOLIO_CONFIG__ = {
+          // Default values used by frontend if process.env.* not present
+          API_BASE: "%REACT_APP_API_URL%" || "http://localhost:5000/api",
+          VERIFY_BASE:
+            "%REACT_APP_VERIFY_API%" || "http://localhost:5000/verify",
+        };
+      })();
+    </script>
+
+    <!-- Optional CSP placeholder (uncomment and configure in production) -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:5000; img-src 'self' data: https:; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"> -->
+
+    <title>Skillfolio</title>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      You need to enable JavaScript to run Skillfolio. Please enable JS in your
+      browser settings.
+    </noscript>
+
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+    <!-- Helpful comment for deployers:
+         - Build (npm run build) will inject compiled JS here.
+         - Use `npm run build` then serve `build/` via static server (nginx, express static, Surge, Vercel, Netlify).
     -->
+
+    <!-- Example: simple health-check script (optional) -->
+    <script>
+      // lightweight runtime check that API_BASE isn't left at literal %REACT_APP_API_URL% after build.
+      (function checkConfig() {
+        try {
+          const cfg = window.__SKILLFOLIO_CONFIG__;
+          if (
+            cfg &&
+            cfg.API_BASE &&
+            cfg.API_BASE.indexOf("%REACT_APP_API_URL%") !== -1
+          ) {
+            // If the environment variable wasn't replaced at build time, we'll still fall back to localhost inside the app.
+            console.warn(
+              "REACT_APP_API_URL is not set in HTML. Make sure your app uses process.env.REACT_APP_API_URL or runtime config."
+            );
+          }
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
   </body>
 </html>
