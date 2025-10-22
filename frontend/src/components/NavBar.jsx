@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
-/**
- * NavBar (plain CSS) — modern, responsive, accessible
- * Drop into src/components/NavBar.jsx and import <NavBar /> in your App.
- */
+
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
