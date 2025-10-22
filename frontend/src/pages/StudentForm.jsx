@@ -58,19 +58,7 @@ export default function StudentForm() {
   return (
     <div className="sf-page">
       {/* 🌗 Navbar */}
-      <nav className="sf-navbar">
-        <div className="sf-brand">
-          <span className="sf-gradient">Skillfolio</span>
-        </div>
-
-        <button
-          className="sf-mode-toggle"
-          onClick={() => setDark((d) => !d)}
-          aria-label="Toggle dark mode"
-        >
-          {dark ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </nav>
+     
 
       <main className="sf-container">
         {/* FORM */}
