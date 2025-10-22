@@ -1,4 +1,8 @@
 /* Minimal clean styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root{
   --primary: #0b3d91;
   --muted: #666;
